@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+#inspall python-dotenv to hide credentials and load it as follows
+from dotenv import load_dotenv
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,8 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-8a65#zf(p76zi_vxlg#r(*%_@+^zs34c(aqpsf2zbp1*^h&1ax'
-
+#SECRET_KEY = 'django-insecure-8a65#zf(p76zi_vxlg#r(*%_@+^zs34c(aqpsf2zbp1*^h&1ax'
+SECRET_KEY = str(os.getenv('SECRET_KEY'))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -126,3 +129,14 @@ STATICFILES_DIRS=[os.path.join(BASE_DIR,'static')]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL='/auth/login'
+
+#email config 
+EMAIL_FROM_USER=str(os.getenv('EMAIL_FROM_USER'))
+print(EMAIL_FROM_USER)
+EMAIL_HOST=str(os.getenv('EMAIL_HOST'))
+EMAIL_HOST_USER=str(os.getenv('EMAIL_HOST_USER'))
+EMAIL_HOST_PASSWORD=str(os.getenv('EMAIL_HOST_PASSWORD'))
+EMAIL_USE_TLS=str(os.getenv('EMAIL_USE_TLS'))
+EMAIL_PORT=str(os.getenv('EMAIL_PORT'))
+print(EMAIL_USE_TLS)
+print(EMAIL_PORT)
